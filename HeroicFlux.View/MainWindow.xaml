@@ -1,0 +1,67 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:HeroicFlux.View" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="HeroicFlux.View.MainWindow"
+        Title="MainWindow" d:DesignWidth="993">
+    <TabControl HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Background="{x:Null}">
+
+        <TabItem x:Name="PropertiesTab" Header="Properties" GotFocus="PropertiesTab_GotFocus">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Menu x:Name="ListThings" VerticalAlignment="Top">
+                    <Button x:Name="ReloadData" Content="Reload Data" Click="ReloadData_Click"/>
+                    <MenuItem x:Name="ListBaseItems" Header="Base Items"/>
+                    <MenuItem x:Name="ListWeaponType" Header="Weapon Types"/>
+                    <MenuItem x:Name="ListItemProperties" Header="Item Properties"/>
+                    <MenuItem x:Name="ListMonsters" Header="Monsters"/>
+                    <MenuItem x:Name="ListMonsterTraits" Header="Monster Traits"/>
+                    <MenuItem x:Name="ListMonsterTactics" Header="Monster Tactics"/>
+                    <MenuItem x:Name="ListHeroActions" Header="Hero Actions"/>
+                    <MenuItem x:Name="ListHeroPassiveSkills" Header="Hero Passives"/>
+                </Menu>
+
+                <ScrollViewer  x:Name="MyScrollViewer"
+                VerticalScrollBarVisibility="Auto" Grid.Row="1" VerticalContentAlignment="Stretch">
+                    <WrapPanel x:Name="Container"                              />
+                </ScrollViewer>
+
+            </Grid>
+        </TabItem>
+        <TabItem Header="Main">
+            <StackPanel Height="Auto" Width="Auto">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="LevelMinus" Content="-" Click="LevelMinus_Click" Width="22" VerticalAlignment="Center"/>
+                    <Button x:Name="LevelPlus" Content="+" HorizontalAlignment="Left" Width="22" Click="LevelPlus_Click" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="LevelInfo" TextWrapping="Wrap" Text="Level Info" VerticalAlignment="Center"/>
+                    <Button x:Name="ButtonDraw" Content="Draw" HorizontalAlignment="Left" Width="75" Click="ButtonDraw_Click" Margin="5,0,0,0" VerticalAlignment="Center" />
+                    <Button x:Name="ButtonReshuffle" Content="Reshuffle" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonReshuffle_Click" />
+                    <TextBlock x:Name="DeckCount" Text="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" />
+                </StackPanel>
+                <local:ItemBlockView x:Name="ItemBlock" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <local:MonsterBlockView x:Name="MonsterBlock" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto"/>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Test">
+            <Canvas>
+                <FlowDocumentScrollViewer x:Name="Doc" HorizontalAlignment="Left" VerticalAlignment="Top" Height="268" RenderTransformOrigin="0.5,0.5" Width="295" Canvas.Left="605" Canvas.Top="156" BorderThickness="1" BorderBrush="Black">
+                    <FlowDocumentScrollViewer.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.031"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </FlowDocumentScrollViewer.RenderTransform>
+                </FlowDocumentScrollViewer>
+            </Canvas>
+        </TabItem>
+
+
+    </TabControl>
+</Window>

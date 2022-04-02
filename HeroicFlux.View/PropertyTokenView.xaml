@@ -1,0 +1,49 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:HeroicFlux.View" x:Class="HeroicFlux.View.PropertyTokenView"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" Width="200" BorderThickness="2,2,1,2" Height="50" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" BorderBrush="Black">
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <ContextMenu.ItemsSource>
+                <CompositeCollection>
+                    <MenuItem Header="Discard" Click="MenuItemDiscard_Click" />
+                    <MenuItem Header="Flip" Click="MenuItemFlip_Click"/>                    
+                </CompositeCollection>
+            </ContextMenu.ItemsSource>
+        </ContextMenu>
+    </UserControl.ContextMenu>
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15" />
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+ 
+      
+        <local:EssencePoolView x:Name="EssencePool" HorizontalAlignment="Center" Grid.RowSpan="3" VerticalAlignment="Center" Margin="2"/>
+        <StackPanel Grid.RowSpan="3" Grid.Column="1" VerticalAlignment="Center">
+            <TextBlock x:Name="TextBox" TextWrapping="Wrap" FontSize="8" VerticalAlignment="Top" ><Run FontWeight="Bold" FontSize="10" Text="Property Title"/>
+                    
+            </TextBlock>
+            <local:IconicTextBox x:Name="Effects" Text="Effect" FontSize="10" InnerMargin="0">
+                <local:IconicTextBox.Background>
+                    <SolidColorBrush Color="{DynamicResource IconicTextBoxBackground}"/>
+                </local:IconicTextBox.Background>
+            </local:IconicTextBox>
+        </StackPanel>
+        <Image x:Name="CategoryWeapon" Grid.Column="2" Width="15" Height="15" Source="Icons/Sword.png" Opacity="0.5"/>
+        <Image x:Name="CategoryDefensive" Grid.Column="2" Width="15" Height="15" Source="Icons/Shield.png" RenderTransformOrigin="0.6,1.533" Grid.Row="1" Opacity="0.5"/>
+        <Image x:Name="CategoryJewel" Grid.Column="2" Width="15" Height="15" Source="Icons/Jewel.png" Grid.Row="2" Opacity="0.5"/>
+    
+    </Grid>
+</UserControl>

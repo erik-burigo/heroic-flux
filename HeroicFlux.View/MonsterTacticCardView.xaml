@@ -1,0 +1,33 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HeroicFlux.View" x:Class="HeroicFlux.View.MonsterTacticCardView" 
+             mc:Ignorable="d" 
+             d:DesignHeight="287" d:DesignWidth="240"  Width="205" Height="315" BorderBrush="Black" BorderThickness="2">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="100px"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="CardName" Content="Name" VerticalAlignment="Top" Margin="5,0" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+        <Rectangle Stroke="Black" RadiusX="5" RadiusY="5" Margin="5" Grid.Row="1">
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FFE0E0E0" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBlock x:Name="Keywords" TextWrapping="Wrap" Text="Keywords" TextAlignment="Center" FontWeight="Bold" Grid.Row="2" FontStyle="Italic"  />
+        <local:IconicTextBox x:Name="Section1" Text="Keywords" Background="#33FFFFFF"  FontSize="12" Grid.Row="3" Margin="5,10,5,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="2,2,1,1"/>
+        <local:IconicTextBox x:Name="Section2" Text="Keywords" Background="#33FFFFFF"  FontSize="12" Grid.Row="4" Margin="5,10,5,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="2,2,1,1"/>
+        <local:IconicTextBox x:Name="Section3" Text="Keywords" Background="#33FFFFFF"  FontSize="12" Grid.Row="5" Margin="5,10,5,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="2,2,1,1"/>
+       
+    </Grid>
+</UserControl>
