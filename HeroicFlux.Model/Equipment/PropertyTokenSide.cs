@@ -9,8 +9,8 @@ namespace HeroicFlux.Model.Equipment
 
         public EssencePool EssencePool
         {
-            get { return _essencePool ?? (_essencePool = new EssencePool()); }
-            set { _essencePool = value; }
+            get => _essencePool ?? (_essencePool = new EssencePool());
+            set => _essencePool = value;
         }
 
         public Boolean IsTriggered { get; set; }

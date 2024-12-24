@@ -13,10 +13,7 @@ namespace HeroicFlux.Model.Equipment
 
         public override IAdoptingLocation CurrentLocation
         {
-            get
-            {
-                return _currentLocation;
-            }
+            get => _currentLocation;
             set
             {
                 _currentLocation = value;
@@ -27,18 +24,15 @@ namespace HeroicFlux.Model.Equipment
             }
         }
 
-        public ProperyTokenSide DisplayedSide { get { return !IsFlipped ? Obverse : Reverse; } }
+        public ProperyTokenSide DisplayedSide => !IsFlipped ? Obverse : Reverse;
 
-        public EssencePool EssencePool { get { return IsFlipped ? Reverse.EssencePool : Obverse.EssencePool; } }
+        public EssencePool EssencePool => IsFlipped ? Reverse.EssencePool : Obverse.EssencePool;
 
-        public Boolean IsFlippable { get { return Type!=PropertyType.Triggered; } }
+        public Boolean IsFlippable => Type!=PropertyType.Triggered;
 
         public Boolean IsFlipped
         {
-            get
-            {
-                return IsFlippable?_isFlipped:false;
-            }
+            get => IsFlippable?_isFlipped:false;
             set
             {
                 if (!IsFlippable)
@@ -49,34 +43,29 @@ namespace HeroicFlux.Model.Equipment
 
         public ModifierPosition ModifierPosition { get; set; }
 
-        public string Name
-        {
-            get
-            {
-                return Type==PropertyType.Triggered
-                    ? Obverse.Name
-                    : Obverse.Name + "/" + Reverse.Name;
-            }
-        }
+        public string Name =>
+            Type==PropertyType.Triggered
+                ? Obverse.Name
+                : Obverse.Name + "/" + Reverse.Name;
 
         public ProperyTokenSide Obverse
         {
-            get { return _obverse ?? (_obverse = new ProperyTokenSide()); }
-            private set { _obverse = value; }
+            get => _obverse ?? (_obverse = new ProperyTokenSide());
+            private set => _obverse = value;
         }
 
-        public virtual Boolean Removable { get { return Type != PropertyType.Cursed || IsFlipped; } }
+        public virtual Boolean Removable => Type != PropertyType.Cursed || IsFlipped;
 
         public ProperyTokenSide Reverse
         {
-            get { return _reverse ?? (_reverse = new ProperyTokenSide()); }
-            private set { _reverse = value; }
+            get => _reverse ?? (_reverse = new ProperyTokenSide());
+            private set => _reverse = value;
         }
 
         public List<PropertyItemCategory> SupportedCategories
         {
-            get { return _supportedCategories ?? (_supportedCategories = new List<PropertyItemCategory>()); }
-            private set { _supportedCategories = value; }
+            get => _supportedCategories ?? (_supportedCategories = new List<PropertyItemCategory>());
+            private set => _supportedCategories = value;
         }
 
         public String TriggeredAbility { get; set; }

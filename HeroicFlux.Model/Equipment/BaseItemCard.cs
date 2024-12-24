@@ -22,16 +22,13 @@ namespace HeroicFlux.Model.Equipment
 
         public EssencePool BaseEssencePool
         {
-            get { return _baseEssencePool ?? (_baseEssencePool = new EssencePool()); }
-            set { _baseEssencePool = value; }
+            get => _baseEssencePool ?? (_baseEssencePool = new EssencePool());
+            set => _baseEssencePool = value;
         }
 
         public BaseItemCategory Category
         {
-            get
-            {
-                return _category;
-            }
+            get => _category;
             set
             {
                 if (WeaponType!=null)
@@ -48,10 +45,7 @@ namespace HeroicFlux.Model.Equipment
 
         public override IAdoptingLocation  CurrentLocation
         {
-            get
-            {
-                return _currentLocation;
-            }
+            get => _currentLocation;
             set
             {
                 _currentLocation = value;
@@ -66,22 +60,19 @@ namespace HeroicFlux.Model.Equipment
 
         public String Effects { get; set; }
 
-        public EssencePool EssencePool { get { return BaseEssencePool + Properties.EssencePool; } }
+        public EssencePool EssencePool => BaseEssencePool + Properties.EssencePool;
 
         public Boolean InDeck { get; set; }
 
         public Boolean IsIdentified { get; set; }
 
-        public Boolean IsMaterialized { get { return !Category.IsWeapon() || WeaponType!=null; } }
+        public Boolean IsMaterialized => !Category.IsWeapon() || WeaponType!=null;
 
         public String Name { get; set; }
 
         public String Icons { get; set; }
 
-        public PropertyCollection Properties
-        {
-            get { return _properties??(_properties=new PropertyCollection(Game)); }
-        }
+        public PropertyCollection Properties => _properties??(_properties=new PropertyCollection(Game));
 
         public String RandomWeaponName { get; private set; }
 

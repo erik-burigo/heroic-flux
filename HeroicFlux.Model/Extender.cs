@@ -189,6 +189,6 @@ namespace HeroicFlux.Model
             return PropertyType.Static;
         }
 
-        private static Random Alea = new Random();
+        private static readonly Random Alea = new Random();
     }
 }

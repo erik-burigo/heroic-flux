@@ -17,10 +17,7 @@ namespace HeroicFlux.View
 
         public HeroPassiveSkillCard Model
         {
-            get
-            {
-                return _model;
-            }
+            get => _model;
             set
             {
                 _model = value;

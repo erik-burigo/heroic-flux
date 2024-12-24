@@ -16,21 +16,37 @@ namespace HeroicFlux.View
             InitializeComponent();
         }
 
-        public Thickness InnerMargin { get { return TheBox.Padding; } set { TheBox.Padding = value; } }
+        public Thickness InnerMargin { get => TheBox.Padding;
+            set => TheBox.Padding = value;
+        }
 
-        public new FontStretch FontStretch { get { return TheBox.FontStretch; } set { TheBox.FontStretch = value; } }
+        public new FontStretch FontStretch { get => TheBox.FontStretch;
+            set => TheBox.FontStretch = value;
+        }
 
-        public FontStyle FontSyle { get { return TheBox.FontStyle; } set { TheBox.FontStyle = value; } }
+        public FontStyle FontSyle { get => TheBox.FontStyle;
+            set => TheBox.FontStyle = value;
+        }
 
-        public new FontWeight FontWeight { get { return TheBox.FontWeight; } set { TheBox.FontWeight = value; } }
+        public new FontWeight FontWeight { get => TheBox.FontWeight;
+            set => TheBox.FontWeight = value;
+        }
 
-        public Double LineHeight { get { return TheBox.LineHeight; } set { TheBox.LineHeight = value; } }
+        public Double LineHeight { get => TheBox.LineHeight;
+            set => TheBox.LineHeight = value;
+        }
 
-        public String Text { get { return _rawText; } set { _rawText = value; } }
+        public String Text { get => _rawText;
+            set => _rawText = value;
+        }
 
-        public TextAlignment TextAlignment { get { return TheBox.TextAlignment; } set { TheBox.TextAlignment = value; } }
+        public TextAlignment TextAlignment { get => TheBox.TextAlignment;
+            set => TheBox.TextAlignment = value;
+        }
 
-        public TextDecorationCollection TextDecorations { get { return TheBox.TextDecorations; } set { TheBox.TextDecorations = value; } }
+        public TextDecorationCollection TextDecorations { get => TheBox.TextDecorations;
+            set => TheBox.TextDecorations = value;
+        }
      
         public void SetText(String rawText)
         {
@@ -110,10 +126,10 @@ namespace HeroicFlux.View
                 test += raw[i];
 
                 // 012345 6 7890 1 234567 prefix * bold * suffix split1 split2
-                var s1s = -1;
-                var s1e = -1;
-                var s2s = -1;
-                var s2e = -1;
+                var s1S = -1;
+                var s1E = -1;
+                var s2S = -1;
+                var s2E = -1;
                 FontStyle? style = null;
                 FontWeight? weight = null;
 
@@ -125,31 +141,31 @@ namespace HeroicFlux.View
 
                 if (test.Contains("_*") && test.Contains("*_") && test.IndexOf("_*")<test.IndexOf("*_"))
                 {
-                    s1s = test.IndexOf("_*");
-                    s1e = s1s+1;
-                    s2s = test.IndexOf("*_");
-                    s2e = s2s+1;
+                    s1S = test.IndexOf("_*");
+                    s1E = s1S+1;
+                    s2S = test.IndexOf("*_");
+                    s2E = s2S+1;
                     style = FontStyles.Italic;
                     weight = FontWeights.Bold;
                 }
                 else if (test.Contains("*") && test.IndexOf("*") != test.LastIndexOf("*"))
                 {
-                    s1s = s1e = test.IndexOf("*");
-                    s2s = s2e = test.LastIndexOf("*");
+                    s1S = s1E = test.IndexOf("*");
+                    s2S = s2E = test.LastIndexOf("*");
                     weight = FontWeights.Bold;
                 }
                 else if (test.Contains("_") && test.IndexOf("_") != test.LastIndexOf("_"))
                 {
-                    s1s = s1e = test.IndexOf("_");
-                    s2s = s2e = test.LastIndexOf("_");
+                    s1S = s1E = test.IndexOf("_");
+                    s2S = s2E = test.LastIndexOf("_");
                     style = FontStyles.Italic;
                 }
 
-                if (s1s != -1)
+                if (s1S != -1)
                 {
-                    var prefix = raw.Substring(0, s1s);
-                    var middle = raw.Substring(s1e+1, s2s-s1e-1);
-                    var suffix = raw.Substring(s2e+1);
+                    var prefix = raw.Substring(0, s1S);
+                    var middle = raw.Substring(s1E+1, s2S-s1E-1);
+                    var suffix = raw.Substring(s2E+1);
                     yield return new Run(prefix);
 
                     var middleRun = new Run(middle);

@@ -16,10 +16,7 @@ namespace HeroicFlux.Model.Monsters
         public String Abilities { get; set; }
         public String SoloAction { get; set; }
 
-        public IEnumerable<GameElement> AdoptedItems
-        {
-            get { return _traits; }
-        }
+        public IEnumerable<GameElement> AdoptedItems => _traits;
 
         public String Attack { get; set; }
 
@@ -77,7 +74,7 @@ namespace HeroicFlux.Model.Monsters
             return all;
         }
 
-        public IEnumerable<MonsterTraitCard> Traits { get { return _traits; } }
+        public IEnumerable<MonsterTraitCard> Traits => _traits;
 
         public bool Abandon(GameElement item)
         {
@@ -166,6 +163,6 @@ namespace HeroicFlux.Model.Monsters
             return trait.DoesSupportKeywords(Keywords);
         }
 
-        private List<MonsterTraitCard> _traits = new List<MonsterTraitCard>();
+        private readonly List<MonsterTraitCard> _traits = new List<MonsterTraitCard>();
     }
 }

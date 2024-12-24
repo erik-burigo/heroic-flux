@@ -17,10 +17,7 @@ namespace HeroicFlux.View
 
         public MonsterTacticCard Model
         {
-            get
-            {
-                return _model;
-            }
+            get => _model;
             set
             {
                 _model = value;

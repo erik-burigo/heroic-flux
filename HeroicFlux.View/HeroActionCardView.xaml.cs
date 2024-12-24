@@ -20,10 +20,7 @@ namespace HeroicFlux.View
 
         public HeroActionCard Model
         {
-            get
-            {
-                return _model;
-            }
+            get => _model;
             set
             {
                 _model = value;

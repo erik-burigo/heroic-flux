@@ -11,7 +11,7 @@ namespace HeroicFlux.Model.Collections
             Game = game;
         }
 
-        public override String LocationName { get { return "Bag of "+typeof(T).Name; } }
+        public override String LocationName => "Bag of "+typeof(T).Name;
 
         public override void AfterRefill()
         {
@@ -23,7 +23,7 @@ namespace HeroicFlux.Model.Collections
             if (IsEmpty)
                 return null;
 
-            var item = _content[Game.Alea.Next(_content.Count)];
+            var item = Content[Game.Alea.Next(Content.Count)];
             return item;
         }
     }

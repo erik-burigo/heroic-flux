@@ -17,8 +17,8 @@ namespace HeroicFlux.Model
 
         // If modifying these scopes, delete your previously saved credentials
         // at ~/.credentials/sheets.googleapis.com-dotnet-quickstart.json
-        static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
-        static string ApplicationName = "Google Sheets API .NET Quickstart";
+        private static readonly string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
+        private static readonly string ApplicationName = "Google Sheets API .NET Quickstart";
 
         public static void Main()
         {

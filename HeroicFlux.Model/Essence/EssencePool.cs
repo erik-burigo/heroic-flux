@@ -15,9 +15,9 @@ namespace HeroicFlux.Model.Essence
             Add(essences);
         }
 
-        public Int32 Count { get { return _list.Count; } }
+        public Int32 Count => _list.Count;
 
-        public Boolean IsEmpty { get { return _list.Count == 0; } }
+        public Boolean IsEmpty => _list.Count == 0;
 
         public static EssencePool operator +(EssencePool a, EssencePool b)
         {
@@ -130,6 +130,6 @@ namespace HeroicFlux.Model.Essence
             return text;
         }
 
-        private List<Essence> _list = new List<Essence>();
+        private readonly List<Essence> _list = new List<Essence>();
     }
 }

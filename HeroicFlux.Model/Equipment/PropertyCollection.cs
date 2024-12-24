@@ -19,7 +19,7 @@ namespace HeroicFlux.Model.Equipment
             get
             {
                 var pool = new EssencePool();
-                foreach (var token in _content)
+                foreach (var token in Content)
                 {
                     pool.Add(token.EssencePool);
                 }
@@ -67,7 +67,7 @@ namespace HeroicFlux.Model.Equipment
 
         public override void Sort()
         {
-            _content.Sort();
+            Content.Sort();
         }
 
         private void CheckAndPurgeTo(IAdoptingLocation discardLocation)

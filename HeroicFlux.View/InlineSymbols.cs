@@ -28,19 +28,13 @@ namespace HeroicFlux.View
 
         public Inline Inline { get; private set; }
 
-        public Boolean IsImage { get { return Image != null; } }
+        public Boolean IsImage => Image != null;
 
-        public Boolean IsSymbol { get { return SymbolProperties != null; } }
+        public Boolean IsSymbol => SymbolProperties != null;
 
         public Uri Uri { get; private set; }
 
-        private static InlineSymbol NonBreakingNull
-        {
-            get
-            {
-                return CreateFromCharacter(new RunProperties('\u2060'.ToString(), new FontFamily()), 0);
-            }
-        }
+        private static InlineSymbol NonBreakingNull => CreateFromCharacter(new RunProperties('\u2060'.ToString(), new FontFamily()), 0);
 
         private RunProperties SymbolProperties { get; set; }
 
@@ -77,9 +71,9 @@ namespace HeroicFlux.View
 
         public static IEnumerable<InlineSymbol> GetSymbolStreak(String key, Double fontSize)
         {
-            if (Map.ContainsKey(key))
+            if (_map.ContainsKey(key))
             {         
-                foreach (var inline in Map[key])
+                foreach (var inline in _map[key])
                 {
                     var copy = inline.Copy();
                     copy.SetFontSize(fontSize);
@@ -91,10 +85,10 @@ namespace HeroicFlux.View
         public static Boolean IsTailMapped(String text, out String key)
         {
             key = "";
-            for (var n =Math.Min(text.Length, MaxKeyLength); n>0; n--)
+            for (var n =Math.Min(text.Length, _maxKeyLength); n>0; n--)
             {
                 var tail = text.Substring(text.Length-n);
-                if (Map.ContainsKey(tail))
+                if (_map.ContainsKey(tail))
                 {
                     key = tail;
                     return true;
@@ -157,7 +151,7 @@ namespace HeroicFlux.View
                 list.Add(symbols[i]);
             }
 
-            Map.Add(key, list);
+            _map.Add(key, list);
         }
 
         private static Image GetImage(Uri uri)
@@ -175,7 +169,7 @@ namespace HeroicFlux.View
 
         private static void InitializeMap()
         {
-            if (Map !=null)
+            if (_map !=null)
                 return;
             var segoeUi = new FontFamily("Segoe UI");
             var segoeUiSymbol = new FontFamily("Segoe UI Symbol");
@@ -191,7 +185,7 @@ namespace HeroicFlux.View
 
             var purpleFrame = new ImageBrush() { ImageSource =new BitmapImage(new Uri("pack://application:,,,/Icons/FramePurple.png")) };
 
-            Map = new Dictionary<String, List<InlineSymbol>>();
+            _map = new Dictionary<String, List<InlineSymbol>>();
             if (true)
             {            
                 /* Colored */
@@ -267,17 +261,17 @@ namespace HeroicFlux.View
                 Add("[jewelSlot]", CreateFromCharacter(new RunProperties("", descent), 0));
             }
 
-            MaxKeyLength = 0;
-            foreach (var key in Map.Keys)
+            _maxKeyLength = 0;
+            foreach (var key in _map.Keys)
             {
-                if (key.Length>MaxKeyLength)
-                    MaxKeyLength = key.Length;
+                if (key.Length>_maxKeyLength)
+                    _maxKeyLength = key.Length;
             }
         }
 
         public Double SizeOffset;
-        private static Dictionary<String, List<InlineSymbol>> Map;
-        private static int MaxKeyLength;
+        private static Dictionary<String, List<InlineSymbol>> _map;
+        private static int _maxKeyLength;
 
         public class RunProperties
         {

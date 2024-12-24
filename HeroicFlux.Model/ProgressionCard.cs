@@ -16,7 +16,7 @@ namespace HeroicFlux.Model
 
         public Int32 MonsterTraitsOn1To3 { get; set; }
 
-        public Int32 MonsterTraitsOn4or5 { get; set; }
+        public Int32 MonsterTraitsOn4Or5 { get; set; }
 
         public Int32 MonsterTraitsOn6 { get; set; }
 
@@ -36,7 +36,7 @@ namespace HeroicFlux.Model
                 x.Level = a.Get<Int32>(row, "Level");
                 x.XpPerHero = a.Get<Int32>(row, "Xp");
                 x.MonsterTraitsOn1To3 = a.Get<Int32>(row, "Monster Traits on 1-3");
-                x.MonsterTraitsOn4or5 = a.Get<Int32>(row, "Monster Traits on 4 or 5");
+                x.MonsterTraitsOn4Or5 = a.Get<Int32>(row, "Monster Traits on 4 or 5");
                 x.MonsterTraitsOn6 = a.Get<Int32>(row, "Monster Traits on 6");
 
                 x.ItemDrop = new Int32[6];
@@ -78,7 +78,7 @@ namespace HeroicFlux.Model
                     return MonsterTraitsOn1To3;
                 case 4:
                 case 5:
-                    return MonsterTraitsOn4or5;
+                    return MonsterTraitsOn4Or5;
                 case 6:
                     return MonsterTraitsOn6;
                 default:

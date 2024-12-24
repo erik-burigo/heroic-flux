@@ -12,25 +12,22 @@ namespace HeroicFlux.Model.Collections
             Game = game;
         }
 
-        public IEnumerable<GameElement> AdoptedItems
-        {
-            get { return _content; }
-        }
+        public IEnumerable<GameElement> AdoptedItems => Content;
 
-        public Int32 Count { get { return _content.Count; } }
+        public Int32 Count => Content.Count;
 
         public virtual Game Game { get; protected set; }
 
-        public Boolean IsEmpty { get { return _content.Count == 0; } }
+        public Boolean IsEmpty => Content.Count == 0;
 
-        public virtual String LocationName { get { return "Set of " + typeof(T).Name; } }
+        public virtual String LocationName => "Set of " + typeof(T).Name;
 
         public Action<T> OnAdoption { get; set; }
 
         public bool Abandon(GameElement item)
         {
-            _content.Remove(item as T);
-            var stillPresent = _content.Contains(item as T);
+            Content.Remove(item as T);
+            var stillPresent = Content.Contains(item as T);
             return !stillPresent;
         }
 
@@ -44,7 +41,7 @@ namespace HeroicFlux.Model.Collections
 
         public virtual void AfterRefill()
         {
-            _content.Shuffle();
+            Content.Shuffle();
         }
 
         public virtual List<T> Draw(Int32 targetNumber, IAdoptingLocation target, IAdoptingLocation discard)
@@ -100,14 +97,14 @@ namespace HeroicFlux.Model.Collections
 
         public virtual IEnumerator<T> GetEnumerator()
         {
-            return _content.GetEnumerator();
+            return Content.GetEnumerator();
         }
 
         public virtual Boolean Introduce(T item)
         {
             if (MayAdopt(item))
             {
-                _content.Add(item);
+                Content.Add(item);
                 if (OnAdoption != null)
                     OnAdoption(item);
                 return true;
@@ -129,19 +126,19 @@ namespace HeroicFlux.Model.Collections
 
         public virtual void Sort()
         {
-            _content.Sort();
+            Content.Sort();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return _content.GetEnumerator();
+            return Content.GetEnumerator();
         }
 
         protected virtual T ReachForNext()
         {
-            return IsEmpty ? null : _content[0];
+            return IsEmpty ? null : Content[0];
         }
 
-        protected List<T> _content = new List<T>();
+        protected List<T> Content = new List<T>();
     }
 }

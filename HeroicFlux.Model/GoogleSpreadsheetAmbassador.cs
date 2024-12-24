@@ -11,6 +11,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
@@ -21,15 +22,19 @@ using Google.GData.Spreadsheets;
 
 namespace HeroicFlux.Model
 {
+    
+    
     public class GoogleSpreadsheetAmbassador
     {
         #region Instance Public Members
        
         public GoogleSpreadsheetAmbassador(String spreadSheetName)
         {
-            GoogleSheetExample.Main();
+            var helper = new GoogleSheetsHelper();
             
-            const string serviceAccountEmail = "78348221941-d0cua7il209ofk6fsquogv5rppu3bmj9@developer.gserviceaccount.com";
+           //GoogleSheetExample.Main();
+            
+            const string serviceAccountEmail = "heroic-flux-data-access@heroic-346000.iam.gserviceaccount.com";
 
             var certificate = new X509Certificate2("Key.p12", "notasecret", X509KeyStorageFlags.Exportable);
 
@@ -38,11 +43,14 @@ namespace HeroicFlux.Model
                     new ServiceAccountCredential.Initializer(serviceAccountEmail) // Create credential using certificate
                     {
 // This scope is for spreadsheets, check Google scope FAQ for others
-                        Scopes = new[]  //{ SheetsService.Scope.SpreadsheetsReadonly }
-                        {"https://spreadsheets.google.com/feeds/" }
+                        Scopes = new[]  { SheetsService.Scope.SpreadsheetsReadonly }
+                       // {"https://spreadsheets.google.com/feeds/" }
                     }.FromCertificate(certificate));
+    credential.RequestAccessTokenAsync(CancellationToken.None).Wait(); //request token
+            
+            var credential2 = GoogleCredential.FromStream(new FileStream("credential.json", FileMode.Open)).CreateScoped(Scopes);
 
-            credential.RequestAccessTokenAsync(CancellationToken.None).Wait(); //request token
+          
 
             var requestFactory = new GDataRequestFactory("Some Name");
             requestFactory.CustomHeaders.Add(string.Format("Authorization: Bearer {0}", credential.Token.AccessToken));
@@ -58,6 +66,10 @@ namespace HeroicFlux.Model
                 .FirstOrDefault(e => e.Title.Text.ToLowerInvariant() == _spreadSheetName.ToLowerInvariant());
             _worksheetFeed = entry.Worksheets;
         }
+
+        private static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
+        
+
 
         public IEnumerable<ListEntry> FromSpreadsheet(String workSheetName)
         {

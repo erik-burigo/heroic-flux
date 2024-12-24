@@ -13,25 +13,22 @@ namespace HeroicFlux.Model.Collections
             Game = game;
         }
 
-        public override String LocationName { get { return "Deck of "+typeof(T).Name; } }
+        public override String LocationName => "Deck of "+typeof(T).Name;
 
-        public T Top
-        {
-            get { return Peek(1).FirstOrDefault(); }
-        }
+        public T Top => Peek(1).FirstOrDefault();
 
         public IEnumerable<T> Peek(Int32 upTo)
         {
             var i = 0;
-            while (i<upTo && i<_content.Count)
+            while (i<upTo && i<Content.Count)
             {
-                yield return _content[i++];
+                yield return Content[i++];
             }
         }
 
         public void Shuffle()
         {
-            _content.Shuffle();
+            Content.Shuffle();
         }
     }
 }

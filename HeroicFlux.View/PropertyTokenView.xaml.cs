@@ -22,10 +22,7 @@ namespace HeroicFlux.View
 
         public PropertyToken Model
         {
-            get
-            {
-                return _model;
-            }
+            get => _model;
             set
             {
                 _model = value;

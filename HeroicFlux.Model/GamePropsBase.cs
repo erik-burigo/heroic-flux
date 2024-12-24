@@ -8,7 +8,7 @@ namespace HeroicFlux.Model
 {
     public class GamePropsBase: IEnumerable<GameElement>
     {
-        public GoogleSpreadsheetAmbassador Ambassador { get { return _ambassador??(_ambassador = new GoogleSpreadsheetAmbassador("HeroicFluxData")); } }
+        public GoogleSpreadsheetAmbassador Ambassador => _ambassador??(_ambassador = new GoogleSpreadsheetAmbassador("HeroicFluxData"));
 
         public Game Game { get; set; }
 

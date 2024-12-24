@@ -15,60 +15,27 @@ namespace HeroicFlux.Model
 
         public GamePropsBase Base { get; private set; }
 
-        public Deck<BaseItemCard> ItemDeck
-        {
-            get { return _itemDeck??(_itemDeck = new Deck<BaseItemCard>(this)); }
-        }
+        public Deck<BaseItemCard> ItemDeck => _itemDeck??(_itemDeck = new Deck<BaseItemCard>(this));
 
-        public Deck<BaseItemCard> ItemDiscard
-        {
-            get { return _itemDiscard??(_itemDiscard = new Deck<BaseItemCard>(this) { }); }
-        }
+        public Deck<BaseItemCard> ItemDiscard => _itemDiscard??(_itemDiscard = new Deck<BaseItemCard>(this) { });
 
-        public Deck<MonsterCard> MonsterDeck
-        {
-            get { return _monsterDeck??(_monsterDeck = new Deck<MonsterCard>(this)); }
-        }
+        public Deck<MonsterCard> MonsterDeck => _monsterDeck??(_monsterDeck = new Deck<MonsterCard>(this));
 
-        public Deck<MonsterCard> MonsterDiscard
-        {
-            get { return _monsterDiscard ?? (_monsterDiscard = new Deck<MonsterCard>(this)); }
-        }
+        public Deck<MonsterCard> MonsterDiscard => _monsterDiscard ?? (_monsterDiscard = new Deck<MonsterCard>(this));
 
-        public Deck<MonsterTraitCard> MonsterTraitDeck
-        {
-            get { return _monsterTraitDeck ?? (_monsterTraitDeck = new Deck<MonsterTraitCard>(this)); }
-        }
+        public Deck<MonsterTraitCard> MonsterTraitDeck => _monsterTraitDeck ?? (_monsterTraitDeck = new Deck<MonsterTraitCard>(this));
 
-        public Deck<MonsterTraitCard> MonsterTraitDiscard
-        {
-            get { return _monsterTraitDiscard ?? (_monsterTraitDiscard = new Deck<MonsterTraitCard>(this)); }
-        }
+        public Deck<MonsterTraitCard> MonsterTraitDiscard => _monsterTraitDiscard ?? (_monsterTraitDiscard = new Deck<MonsterTraitCard>(this));
 
-        public Deck<ProgressionCard> ProgressionDeck
-        {
-            get { return _progressionDeck??(_progressionDeck = new Deck<ProgressionCard>(this)); }
-        }
+        public Deck<ProgressionCard> ProgressionDeck => _progressionDeck??(_progressionDeck = new Deck<ProgressionCard>(this));
 
-        public Deck<ProgressionCard> ProgressionDiscard
-        {
-            get { return _progressionDiscard??(_progressionDiscard = new Deck<ProgressionCard>(this) { }); }
-        }
+        public Deck<ProgressionCard> ProgressionDiscard => _progressionDiscard??(_progressionDiscard = new Deck<ProgressionCard>(this) { });
 
-        public Bag<PropertyToken> PropertyTokensBag
-        {
-            get { return _propertyTokensBag??(_propertyTokensBag=new Bag<PropertyToken>(this)); }
-        }
+        public Bag<PropertyToken> PropertyTokensBag => _propertyTokensBag??(_propertyTokensBag=new Bag<PropertyToken>(this));
 
-        public Deck<WeaponTypeCard> WeaponTypeDeck
-        {
-            get { return _weaponTypeDeck??(_weaponTypeDeck = new Deck<WeaponTypeCard>(this)); }
-        }
+        public Deck<WeaponTypeCard> WeaponTypeDeck => _weaponTypeDeck??(_weaponTypeDeck = new Deck<WeaponTypeCard>(this));
 
-        public Deck<WeaponTypeCard> WeaponTypeDiscard
-        {
-            get { return _weaponTypeDiscard??(_weaponTypeDiscard = new Deck<WeaponTypeCard>(this)); }
-        }
+        public Deck<WeaponTypeCard> WeaponTypeDiscard => _weaponTypeDiscard??(_weaponTypeDiscard = new Deck<WeaponTypeCard>(this));
 
         public void Initialize()
         {

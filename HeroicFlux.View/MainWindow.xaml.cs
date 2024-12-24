@@ -36,15 +36,15 @@ namespace HeroicFlux.View
 
 
 
-        public Game Game { get { return _game??(_game=new Game()); } }
+        public Game Game => _game??(_game=new Game());
 
         private void InitializeGame(Boolean anyway)
         {
             if (!_initialized || anyway)
             {
                 Game.Initialize();
-                drawnItems = new Set<BaseItemCard>(Game);
-                drawnMonsters = new Set<MonsterCard>(Game);
+                _drawnItems = new Set<BaseItemCard>(Game);
+                _drawnMonsters = new Set<MonsterCard>(Game);
                 _initialized = true;
             }
         }
@@ -53,8 +53,8 @@ namespace HeroicFlux.View
         {
             InitializeGame(false);
 
-            var baseItem = Game.ItemDeck.Draw(drawnItems, Game.ItemDiscard);
-            var monster = Game.MonsterDeck.Draw(drawnMonsters, Game.MonsterDiscard);
+            var baseItem = Game.ItemDeck.Draw(_drawnItems, Game.ItemDiscard);
+            var monster = Game.MonsterDeck.Draw(_drawnMonsters, Game.MonsterDiscard);
 
             if (monster == null)
             {
@@ -135,7 +135,7 @@ namespace HeroicFlux.View
             if (!String.IsNullOrEmpty(message))
                 MessageBox.Show(message);
 
-            drawnItems.MoveTo(Game.ItemDiscard);
+            _drawnItems.MoveTo(Game.ItemDiscard);
             Game.ItemDiscard.MoveTo(Game.ItemDeck);
             Game.ItemDeck.Shuffle();
 
@@ -144,7 +144,7 @@ namespace HeroicFlux.View
 
         private void Reshuffle()
         {
-            drawnItems.MoveTo(Game.ItemDiscard);
+            _drawnItems.MoveTo(Game.ItemDiscard);
             Game.Reset();
             UpdateStatus();
         }
@@ -166,8 +166,8 @@ namespace HeroicFlux.View
         private int _currentLevel;
         private Game _game;
         private bool _initialized;
-        private Set<BaseItemCard> drawnItems;
-        private Set<MonsterCard> drawnMonsters;
+        private Set<BaseItemCard> _drawnItems;
+        private Set<MonsterCard> _drawnMonsters;
 
 
         private void PropertiesTab_GotFocus(object sender, RoutedEventArgs e)
@@ -189,7 +189,7 @@ namespace HeroicFlux.View
             //Container.EndInit();
         }
 
-        void propertyTokenView_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void propertyTokenView_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var view = sender as PropertyTokenView;
             if (view == null)
@@ -201,7 +201,8 @@ namespace HeroicFlux.View
             }
 
         }
-        void ListThings_Click(object sender, RoutedEventArgs e)
+
+        private void ListThings_Click(object sender, RoutedEventArgs e)
         {
             InitializeGame(false);
 
